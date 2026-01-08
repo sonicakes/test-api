@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// 1. Move your data to a variable outside the routes
 const projects = {
   projects: [
     {
@@ -82,23 +82,19 @@ const projects = {
   ],
 };
 
-// Route to get ALL projects
 app.get("/api/data", (req, res) => {
   res.json({ projects });
 });
 
-// 2. Route to get a SINGLE project by ID
 app.get("/api/data/:id", (req, res) => {
-  // Access the ID from the URL (it comes as a string)
   const projectId = parseInt(req.params.id);
 
-  // Find the project that matches the ID
   const project = projects.find((p) => p.id === projectId);
 
   if (project) {
     res.json(project);
   } else {
-    // If no project is found, return a 404 error
     res.status(404).json({ message: "Project not found" });
   }
 });
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
