@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const projects = {
-  projects: [
+const projects = 
+[
     {
       id: 1,
       title: "DevDash",
@@ -79,8 +79,8 @@ const projects = {
       category: "Fullstack",
       featured: false,
     },
-  ],
-};
+  ]
+
 
 app.get("/api/data", (req, res) => {
   res.json({ projects });
